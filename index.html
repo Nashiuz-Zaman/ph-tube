@@ -28,7 +28,7 @@
               primary: "#FF1F3D",
               primaryLight: "#FF4C64",
               textPrimary: "#171717",
-              textSecondary: "#252525",
+              textSecondary: "#252525b3",
               textLight: "#171717b3",
               lightBgPrimary: "#25252526",
               lightBgSecondary: "#25252533",
@@ -70,7 +70,7 @@
 
         <!-- sort button -->
         <button
-          class="hidden md:block w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-textSecondary transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal] md:justify-self-center"
+          class="hidden md:block w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-[#252525] transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal] md:justify-self-center"
         >
           Sort by view
         </button>
@@ -85,7 +85,7 @@
         <div class="md:hidden flex justify-center items-center gap-4">
           <!-- sort button -->
           <button
-            class="w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-textSecondary transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal]"
+            class="w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-[#252525] transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal]"
           >
             Sort by view
           </button>
@@ -105,16 +105,16 @@
     <main>
       <section
         id="tabs-container"
-        class="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6"
+        class="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6 mb-10"
       >
         <!-- dynamically appended buttons go here -->
       </section>
 
-      <section id="videos-container">
+      <section
+        id="videos-container"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
         <!-- dynamically appended videos go here -->
-        <!-- <div>
-          <img src="" alt="video name" />
-        </div> -->
       </section>
     </main>
 
