@@ -102,23 +102,37 @@
       <div class="max-w-[90rem] h-[1px] bg-[#17171733]"></div>
     </header>
 
-    <main>
+    <main class="mb-40">
       <section
         id="tabs-container"
-        class="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6 mb-10"
+        class="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6"
       >
         <!-- dynamically appended buttons go here -->
       </section>
 
       <section
         id="videos-container"
-        class="grid grid-cols-1 md:grid-cols-2 lgTab:grid-cols-3 lg:grid-cols-4 gap-6 mb-40"
+        class="grid grid-cols-1 md:grid-cols-2 lgTab:grid-cols-3 lg:grid-cols-4 gap-6 pt-10"
       >
         <!-- dynamically appended videos go here -->
       </section>
+
+      <!-- conditionally show the no video found message -->
+      <div id="no-video-found-message" class="py-[12.5rem] hidden">
+        <img
+          class="mb-8 w-[8.75rem] aspect-square block mx-auto"
+          src="./assets/icon/no-video-icon.webp"
+          alt="no video icon"
+        />
+        <h3
+          class="font-bold text-textPrimary text-[2rem] leading-[2.75rem] text-center"
+        >
+          Oops!! Sorry, There is no <br />
+          content here
+        </h3>
+      </div>
     </main>
 
-    <script src="./js/utils.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
