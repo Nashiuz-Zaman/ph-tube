@@ -20,8 +20,22 @@
       tailwind.config = {
         theme: {
           extend: {
+            screens: {
+              xsm: "450px",
+              lgTab: "900px",
+            },
             colors: {
-              clifford: "#da373d",
+              primary: "#FF1F3D",
+              primaryLight: "#FF4C64",
+              textPrimary: "#171717",
+              textSecondary: "#252525",
+              textLight: "#171717b3",
+              lightBgPrimary: "#25252526",
+              lightBgSecondary: "#25252533",
+            },
+            borderRadius: {
+              primary: "8px",
+              secondary: "4px",
             },
           },
         },
@@ -39,7 +53,72 @@
     <title>Document</title>
   </head>
   <!-- setting the defeault font for the whole app on the body element -->
-  <body class="font-inter">
+  <body
+    class="font-inter px-[2rem] 2xl:max-w-[90rem] 2xl:px-0 2xl:mx-auto pt-[3.125rem] text-textPrimary"
+  >
+    <header class="mb-10">
+      <nav class="md:grid grid-cols-3 mb-8 items-center">
+        <!-- brand logo -->
+        <div class="block mb-8 md:mb-0 md:justify-self-start">
+          <a href="index.html" class="block w-max mx-auto"
+            ><img
+              class="block h-[1.8rem] lg:h-[2.4375rem]"
+              src="./assets/logo/brand-logo.webp"
+              alt="brand logo"
+          /></a>
+        </div>
+
+        <!-- sort button -->
+        <button
+          class="hidden md:block w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-textSecondary transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal] md:justify-self-center"
+        >
+          Sort by view
+        </button>
+
+        <!-- blog button -->
+        <button
+          class="hidden md:block w-max py-[0.625rem] px-5 bg-primary text-white hover:bg-primaryLight transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal] md:justify-self-end"
+        >
+          Blog
+        </button>
+
+        <div class="md:hidden flex justify-center items-center gap-4">
+          <!-- sort button -->
+          <button
+            class="w-max py-[0.625rem] px-5 bg-lightBgSecondary hover:bg-lightBgPrimary text-textSecondary transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal]"
+          >
+            Sort by view
+          </button>
+
+          <!-- blog button -->
+          <button
+            class="w-max py-[0.625rem] px-5 bg-primary text-white hover:bg-primaryLight transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal]"
+          >
+            Blog
+          </button>
+        </div>
+      </nav>
+
+      <div class="max-w-[90rem] h-[1px] bg-[#17171733]"></div>
+    </header>
+
+    <main>
+      <section
+        id="tabs-container"
+        class="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6"
+      >
+        <!-- dynamically appended buttons go here -->
+      </section>
+
+      <section id="videos-container">
+        <!-- dynamically appended videos go here -->
+        <!-- <div>
+          <img src="" alt="video name" />
+        </div> -->
+      </section>
+    </main>
+
+    <script src="./js/utils.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
