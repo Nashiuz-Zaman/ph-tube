@@ -11,13 +11,34 @@ const fetchData = async (apiUrl) => {
   return data;
 };
 
+// function to change the color of the active tab
+const makeActive = (categoryId) => {
+  // validate the argument
+  if (typeof categoryId !== "string") {
+    return "Invalid input. Category id should be a string data type.";
+  }
+  // retrieve the active button element and change its appearance
+  const activeTabEl = document.getElementById(categoryId);
+  activeTabEl.classList.add("!bg-primary", "!text-white");
+};
+
+const removeActiveFromAll = (categoryElements) => {
+  categoryElements.forEach((tab) => {
+    tab.classList.remove("!bg-primary", "!text-white");
+  });
+};
+
+// function to display the loaded video data
 const displayVideos = (data) => {
-  console.log(data);
   const videosContainer = document.getElementById("videos-container");
+  // clear any previous video elements before showing the new results
   videosContainer.innerHTML = "";
 
+  // create video elements for the data that has been loaded.
   data.forEach((video) => {
     const videoDiv = document.createElement("div");
+
+    // set the inner html of the videodiv that has been created
     videoDiv.innerHTML = `<div class="w-full aspect-[14/9] rounded-primary overflow-hidden mb-5">
     <img
       class="w-full h-full object-cover"
@@ -61,6 +82,8 @@ const displayVideos = (data) => {
       }</p>
     </div>
   </div>`;
+
+    // inject the video elements inside the videos container
     videosContainer.appendChild(videoDiv);
   });
 };
@@ -77,29 +100,46 @@ const loadVideos = async (categoryId) => {
   const data = await fetchData(videoApi);
   const { data: videosData } = data;
 
+  // display the videos on the page
   displayVideos(videosData);
 };
 
 // function to create the catergory tabs
 const displayTabs = (tabsData) => {
   const tabsContainer = document.getElementById("tabs-container");
+  // set the first button as the active tab
+  let activeTab = tabsData[0].category_id;
 
   // setting the 4 category buttons
   tabsData.forEach((tab) => {
     const button = document.createElement("button");
-    // adding necessary classes
+    // adding necessary classes to buttons/tabs
     button.classList =
-      "py-2 px-5 text-textSecondary bg-lightBgPrimary hover:bg-lightBgSecondary transition-all duration-300 rounded-secondary font-medium leading-[normal]";
+      "py-2 px-5 text-textSecondary bg-lightBgPrimary hover:bg-lightBgSecondary transition-all duration-300 rounded-secondary font-medium leading-[normal] category-button";
+
+    // add unique id to the button/tab
+    button.setAttribute("id", tab.category_id);
 
     // adding button text
     button.innerText = tab.category;
+
+    // inject the button elements inside the button/tabs container
     tabsContainer.appendChild(button);
 
-    // set event listeners on the category tabs/buttons
+    // set event listeners on the category tabs/buttons and call the loadvideos function to show relevant data and also change the active tab according to the button clicked
     button.addEventListener("click", () => {
+      let activeTab = tab.category_id;
+      // change the appearance of the active tab
+      const allButtons = document.querySelectorAll(".category-button");
+      removeActiveFromAll(allButtons);
+      makeActive(activeTab);
+      // load videos according to the category selected
       loadVideos(tab.category_id);
     });
   });
+
+  // change the appearance of the active tab
+  makeActive(activeTab);
 };
 
 // function to load and display the category tabs
