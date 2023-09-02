@@ -1,3 +1,9 @@
+// sort and blog buttons
+const sortButtons = document.querySelectorAll(".sort-button");
+const blogButtons = document.querySelectorAll(".blog-button");
+// active tab
+let activeTab;
+
 //  common function to fetch data
 const fetchData = async (apiUrl) => {
   // validate the argument
@@ -11,7 +17,7 @@ const fetchData = async (apiUrl) => {
   return data;
 };
 
-// render no video found message
+// render no video found message conditionally
 const toggleNoVideoMessage = (show) => {
   const noVideoFoundEl = document.getElementById("no-video-found-message");
 
@@ -24,7 +30,7 @@ const toggleNoVideoMessage = (show) => {
   }
 };
 
-// render videos container section
+// render videos container section conditionally
 const toggleVideosContainer = (show) => {
   const videosContainer = document.getElementById("videos-container");
 
@@ -55,18 +61,49 @@ const removeActiveFromAll = (categoryElements) => {
   });
 };
 
+// function to calculate hours and minutes from seconds string
+const convertTime = (timeInSeconds) => {
+  timeInSeconds = parseFloat(timeInSeconds);
+
+  // validate if the string was a numeric string
+  if (isNaN(timeInSeconds)) {
+    return "Invalid input. The argument should be a numeric string.";
+  }
+
+  // convert to minutes first for the ease of calculation
+  const timeInMinutes = timeInSeconds / 60;
+  let hours = 0;
+  let minutes = 0;
+
+  if (timeInMinutes / 60 < 1) {
+    minutes = timeInMinutes % 60;
+    return `${minutes}min ago`;
+  } else {
+    hours = Math.trunc(timeInMinutes / 60);
+    minutes = Math.trunc(timeInMinutes % 60);
+    return `${hours}hrs ${minutes} min ago`;
+  }
+};
+
 // function to display the loaded video data
-const displayVideos = (data) => {
+const displayVideos = (data, sorted) => {
   const videosContainer = document.getElementById("videos-container");
   // clear any previous video elements before showing the new results
   videosContainer.innerHTML = "";
 
+  // if there is no data in the array hide video container section and show no video message div and vice versa
   if (data.length === 0) {
     toggleVideosContainer(false);
     toggleNoVideoMessage(true);
   } else {
     toggleVideosContainer(true);
     toggleNoVideoMessage(false);
+
+    if (sorted) {
+      data.sort(
+        (a, b) => parseFloat(b.others.views) - parseFloat(a.others.views)
+      );
+    }
   }
 
   // create video elements for the data that has been loaded.
@@ -74,12 +111,19 @@ const displayVideos = (data) => {
     const videoDiv = document.createElement("div");
 
     // set the inner html of the videodiv that has been created
-    videoDiv.innerHTML = `<div class="w-full aspect-[14/9] rounded-primary overflow-hidden mb-5">
+    videoDiv.innerHTML = `<div class="w-full aspect-[14/9] rounded-primary overflow-hidden mb-5 relative">
     <img
       class="w-full h-full object-cover"
       src=${video.thumbnail}
-      alt=${video.title}
+      alt="Preview thumbnail of ${video.title}"
     />
+    ${
+      video.others.posted_date
+        ? `<p class="text-[0.625rem] bg-textPrimary px-[0.3125rem] py-1 leading-[normal] right-3 bottom-3 text-white absolute rounded-secondary">${convertTime(
+            video.others.posted_date
+          )}</p>`
+        : ""
+    }  
   </div>
 
   <div class="flex items-start gap-3">
@@ -124,7 +168,7 @@ const displayVideos = (data) => {
 };
 
 // function to load and display videos
-const loadVideos = async (categoryId) => {
+const loadVideos = async (categoryId, sorted = false) => {
   // validate the argument
   if (typeof categoryId !== "string") {
     return "Invalid input. Category ID should be a string data type.";
@@ -136,14 +180,14 @@ const loadVideos = async (categoryId) => {
   const { data: videosData } = data;
 
   // display the videos on the page
-  displayVideos(videosData);
+  displayVideos(videosData, sorted);
 };
 
 // function to create the catergory tabs
 const displayTabs = (tabsData) => {
   const tabsContainer = document.getElementById("tabs-container");
   // set the first button as the active tab
-  let activeTab = tabsData[0].category_id;
+  activeTab = tabsData[0].category_id;
 
   // setting the 4 category buttons
   tabsData.forEach((tab) => {
@@ -163,13 +207,13 @@ const displayTabs = (tabsData) => {
 
     // set event listeners on the category tabs/buttons and call the loadvideos function to show relevant data and also change the active tab according to the button clicked
     button.addEventListener("click", () => {
-      let activeTab = tab.category_id;
+      activeTab = tab.category_id;
       // change the appearance of the active tab
       const allButtons = document.querySelectorAll(".category-button");
       removeActiveFromAll(allButtons);
       makeActive(activeTab);
       // load videos according to the category selected
-      loadVideos(tab.category_id);
+      loadVideos(activeTab);
     });
   });
 
@@ -187,6 +231,18 @@ const loadCategories = async () => {
   const { data: categoriesData } = data;
   displayTabs(categoriesData);
 };
+
+sortButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    loadVideos(activeTab, true);
+  });
+});
+
+blogButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    window.location.href = "./../blog.html";
+  });
+});
 
 loadCategories();
 loadVideos("1000");
