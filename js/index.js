@@ -188,6 +188,7 @@ const displayTabs = (tabsData) => {
   const tabsContainer = document.getElementById("tabs-container");
   // set the first button as the active tab
   activeTab = tabsData[0].category_id;
+  loadVideos(activeTab);
 
   // setting the 4 category buttons
   tabsData.forEach((tab) => {
@@ -232,17 +233,21 @@ const loadCategories = async () => {
   displayTabs(categoriesData);
 };
 
+// adding event listener to sort buttons
+// mulitple buttons because of responsive design layout
 sortButtons.forEach((button) => {
   button.addEventListener("click", () => {
     loadVideos(activeTab, true);
   });
 });
 
+// adding event listener to blog buttons
+// mulitple buttons because of responsive design layout
 blogButtons.forEach((button) => {
   button.addEventListener("click", () => {
     window.location.href = "./../blog.html";
   });
 });
 
+// run basic functionality to start the app
 loadCategories();
-loadVideos("1000");
