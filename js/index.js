@@ -188,6 +188,7 @@ const displayTabs = (tabsData) => {
   const tabsContainer = document.getElementById("tabs-container");
   // set the first button as the active tab
   activeTab = tabsData[0].category_id;
+  //  loading the initial videos
   loadVideos(activeTab);
 
   // setting the 4 category buttons
