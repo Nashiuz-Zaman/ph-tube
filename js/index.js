@@ -1,7 +1,7 @@
-// sort and blog buttons
+// Get sort and blog buttons from the dom
 const sortButtons = document.querySelectorAll(".sort-button");
 const blogButtons = document.querySelectorAll(".blog-button");
-// active tab
+// active tab (global scope). variable will be reassigned later according to the need of functionality
 let activeTab;
 
 //  common function to fetch data
@@ -54,7 +54,7 @@ const makeActive = (categoryId) => {
   activeTabEl.classList.add("!bg-primary", "!text-white");
 };
 
-// functon to reset the acive status of the button before changing the appearnce of the latest active tab
+// function to reset the acive status of the button before changing the appearnce of the latest active tab
 const removeActiveFromAll = (categoryElements) => {
   categoryElements.forEach((tab) => {
     tab.classList.remove("!bg-primary", "!text-white");

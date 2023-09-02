@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- tailwind css import -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- tailwind custom variables -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            screens: {
+              xsm: "450px",
+              lgTab: "900px",
+            },
+            colors: {
+              primary: "#FF1F3D",
+              primaryLight: "#FF4C64",
+              textPrimary: "#171717",
+              textSecondary: "#252525b3",
+              textLight: "#171717b3",
+              lightBgPrimary: "#25252526",
+              lightBgSecondary: "#25252533",
+            },
+            borderRadius: {
+              primary: "8px",
+              secondary: "4px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="./styles/shared.css" />
+
+    <!-- document title -->
+    <title>PH Tube | Blog</title>
+  </head>
+
+  <!-- setting the defeault font for the whole app on the body element -->
+  <body
+    class="font-inter px-[2rem] 2xl:max-w-[90rem] 2xl:px-0 2xl:mx-auto pt-[3.125rem] text-textPrimary"
+  >
+    <header class="mb-10">
+      <nav
+        class="flex flex-col md:flex-row md:justify-between mb-8 items-center"
+      >
+        <!-- brand logo -->
+        <div class="block mb-8 md:mb-0 md:justify-self-start">
+          <a href="index.html" class="block w-max mx-auto"
+            ><img
+              class="block h-[1.8rem] lg:h-[2.4375rem]"
+              src="./assets/logo/brand-logo.webp"
+              alt="brand logo"
+          /></a>
+        </div>
+
+        <!-- back to home button -->
+        <button
+          id="back-to-home"
+          class="block w-max py-[0.625rem] px-5 bg-primary text-white hover:bg-primaryLight transition-all duration-300 text-lg font-medium rounded-secondary leading-[normal] md:justify-self-end capitalize"
+        >
+          Back to homepage
+        </button>
+      </nav>
+
+      <div class="max-w-[90rem] h-[1px] bg-[#17171733]"></div>
+    </header>
+
+    <main class="space-y-12 font-medium mb-40">
+      <!-- question 1 -->
+      <div>
+        <h2 class="text-xl text-textPrimary font-extrabold mb-6">
+          <span class="text-primary">Question 1:</span> Discuss the scope of
+          var, let, and const
+        </h2>
+
+        <p class="mb-4">
+          Variables declared with var, let and const will be global scoped when
+          they are declared globally outside of any function body or curly
+          braces {} code blocks. That means they will be available globally. The
+          difference between var and let, const variables comes into play when
+          the question of function scope or code block scope.
+        </p>
+
+        <p class="mb-4">
+          Variables declared with the var keyword are scoped to a function's
+          scope when they are declared inside the body of a function which means
+          they will be accessible anywhere inside a function body. var keyword
+          variables ignore the block scope of code blocks with curly braces {}
+          for example loop or conditional blocks which means even if they are
+          declared inside a code block, they can still be accessed from outside
+          of the said code block. Variables declared with var keyword are
+          hoisted which means they can be used before they are declared in the
+          code.
+        </p>
+
+        <p class="mb-4">
+          Variables declared with let and const keywords are scoped to a code
+          block's scope when they are declared inside the curly braces {} of a
+          code block such as loop or conditional blocks. They can accessed
+          anywhere inside that same code block where they were declared but not
+          from outside of that block, which means if there are separated code
+          blocks (not nested) and they all have a variable with the same name
+          which was declared with either the let or const keyword, it is valid
+          as even though those variables have the same name, they are not the
+          same variables. Variables declared with let or const keywords are not
+          hoisted which means you can use them in your code only after they have
+          been declared.
+        </p>
+      </div>
+
+      <!-- question 2 -->
+      <div>
+        <h2 class="text-xl text-textPrimary font-extrabold mb-6">
+          <span class="text-primary">Question 2:</span> Tell us the use cases of
+          null and undefined
+        </h2>
+
+        <p class="mb-4">
+          Null means the variable has been declared and null is the value which
+          has been defined for the variable to explicitly indicate that the
+          variable has an intentional absence of a value. Null can also be used
+          to reset a variable's (such as a timer which was created with
+          setTimeout or setInterval methods) value. After clearing the timeout
+          or interval null can be explicitly set as the value of the timer.
+        </p>
+
+        <p class="mb-4">
+          Undefined means a variable has been declared but the value of the
+          variable hasn't been defined yet. Undefined is the default value of a
+          variable just after it has been declared in the code until a real
+          value has been assigned to it. Undefined also indicates that the
+          variable/property/function which the developer is trying to use in
+          their code doesn't exist or hasn't been declared in the current scope.
+          If you try to use a function without the arguments for its parameters,
+          the local variables (parameters) gets the value of undefined. Also a
+          function which doesn't return a value explicitly retunrs undefined
+          implicitly.
+        </p>
+      </div>
+
+      <!-- question 3 -->
+      <div>
+        <h2 class="text-xl text-textPrimary font-extrabold mb-6">
+          <span class="text-primary">Question 3:</span> What do you mean by REST
+          API?
+        </h2>
+
+        <p class="mb-4">
+          REST stands for Representational State Transfer for an API. It can be
+          used to create, read, update and delete data inside a database by
+          using the POST, GET, PUT/PATCH & DELETE HTTP methods respectively. It
+          is an architectural style for designing an application programming
+          interface (API). REST is not a new technology or a new language but
+          rather a special way/design of creating APIs or web services. As any
+          web development student can see, REST is the most popular principle of
+          creating APIs in the current world.
+        </p>
+      </div>
+    </main>
+
+    <script src="./js/blog.js"></script>
+  </body>
+</html>

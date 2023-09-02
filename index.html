@@ -10,14 +10,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- inter font import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
     <!-- tailwind css import -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -48,13 +40,7 @@
       };
     </script>
 
-    <!-- declaring the default font class -->
-    <style>
-      .font-inter {
-        font-family: "Inter", sans-serif;
-      }
-    </style>
-
+    <link rel="stylesheet" href="./styles/shared.css" />
     <!-- document title -->
     <title>PH Tube | Your Daily Dose Of Awesome Videos</title>
   </head>
@@ -118,7 +104,7 @@
 
       <section
         id="videos-container"
-        class="grid grid-cols-1 md:grid-cols-2 lgTab:grid-cols-3 lg:grid-cols-4 gap-6 pt-10"
+        class="grid grid-cols-1 sm:grid-cols-2 lgTab:grid-cols-3 lg:grid-cols-4 gap-6 pt-10"
       >
         <!-- dynamically appended videos go here -->
       </section>
