@@ -151,7 +151,7 @@ const displayVideos = (data, sorted) => {
         
         ${
           video.authors[0].verified
-            ? '<img class="w-5 h-5" src="./assets/icon/verified.svg" alt="blue verified icon" />'
+            ? '<img title="Verified Profile" class="w-5 h-5" src="./assets/icon/verified.svg" alt="blue verified icon" />'
             : ""
         }        
       </div>
